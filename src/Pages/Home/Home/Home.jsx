@@ -6,10 +6,15 @@ import Feature from '../Feature/Feature.jsx'
 import Testomonial from '../Testomonial/Testomonial.jsx'
 import BistroBossBanner from '../BistroBossBanner/BistroBossBanner.jsx'
 import ChefReco from '../ChefReco/ChefReco.jsx'
+import { Helmet } from 'react-helmet-async'
 
 function Home() {
   return (
     <div>
+      <Helmet>
+        <title>Bistro Boss - Home</title>
+      </Helmet>
+      
       <Banner></Banner>
       <Category></Category>
       <BistroBossBanner></BistroBossBanner>
