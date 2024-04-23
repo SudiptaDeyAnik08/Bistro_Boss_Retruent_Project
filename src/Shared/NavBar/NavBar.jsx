@@ -19,7 +19,7 @@ function NavBar() {
 
                 <Link to="/menu" className="uppercase   hover:border-b-2 me-3 ">Our Menu</Link>
                 
-                <Link to="" className="uppercase  hover:border-b-2 me-3">Our Shop</Link>
+                <Link to="/order/salad" className="uppercase  hover:border-b-2 me-3">Order</Link>
                 <Link to="" className="uppercase  hover:border-b-2  me-3">SIGN OUT</Link>
 
                 <a className="btn">Button</a>

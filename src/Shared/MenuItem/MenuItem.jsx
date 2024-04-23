@@ -1,7 +1,10 @@
 import React from 'react'
 
-function MenuItem({ item }) {
-    const { name, recipe, image, category, price } = item
+function MenuItem({ item,titleMethod }) {
+    const { name, recipe, image, category, price } = item;
+    
+
+    
     return (
         <div className='flex space-x-4'>
             <img style={{borderRadius:"0 200px 200px 200px"}} src={image} alt="" className='w-[120px]' />
