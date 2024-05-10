@@ -13,14 +13,14 @@ function NavBar() {
             <div className="navbar-end  hidden lg:flex">
                 <Link to="/" className="uppercase hover:border-b-2 me-3">Home</Link>
 
-                <Link to="" className="uppercase  hover:border-b-2 me-3">CONTACT us</Link>
+                <Link to="/" className="uppercase  hover:border-b-2 me-3">CONTACT us</Link>
 
                 <Link to="" className="uppercase hover:border-b-2  me-3">DASHBOARD</Link>
 
                 <Link to="/menu" className="uppercase   hover:border-b-2 me-3 ">Our Menu</Link>
                 
                 <Link to="/order/salad" className="uppercase  hover:border-b-2 me-3">Order</Link>
-                <Link to="" className="uppercase  hover:border-b-2  me-3">SIGN OUT</Link>
+                <Link to="/login" className="uppercase  hover:border-b-2  me-3">Login</Link>
 
                 <a className="btn">Button</a>
             </div>
