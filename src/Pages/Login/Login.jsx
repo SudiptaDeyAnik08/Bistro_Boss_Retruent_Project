@@ -31,7 +31,6 @@ function Login() {
       alert('Captcha Matched');
       setAllowLogin(false)
     }
-
     else {
       alert('Captcha Does Not Match');
     }

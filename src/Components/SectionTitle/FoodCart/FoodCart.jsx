@@ -1,24 +1,43 @@
 import React from 'react'
 import useAuth from '../../../hooks/useAuth'
+import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import useCart from '../../../hooks/useCart';
 
 function FoodCart({ item }) {
 
     const { name, recipe, image, category, price,_id } = item
     
-    const {user } = useAuth()
+    const { user } = useAuth();
+
+    const axioSecure = useAxiosSecure();
+    const   [cart,refetch] = useCart()
 
     const handleAddtoCart =(foodItem) =>{
         console.log(foodItem);
-        
-        //TODO: Send cart item to the database
         const cartItem ={
             menuId:_id,
             email:user.email,
             name,
             price,
             image,
-                
+
         }
+
+        axioSecure.post('/carts',cartItem)
+        .then(res =>{
+            console.log(res.data);
+            if(res.data.insertedId){
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: `${name} Added to your Cart`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                  refetch();
+            }
+        })
     }
     return (
         <div>

@@ -6,6 +6,8 @@ import OrderFood from "../Pages/Order/Order/OrderFood.jsx";
 import Login from "../Pages/Login/Login.jsx";
 import SignUp from "../Pages/SignUp/SignUp.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
+import Dashboard from "../Layout/Dashboard.jsx";
+import Cart from "../Pages/Dashboard/Cart/Cart.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -35,4 +37,14 @@ export const router = createBrowserRouter([
           
         ]
     },
+    {
+        path:"/dashboard",
+        element:<Dashboard></Dashboard>,
+        children:[
+            {
+                path:'/dashboard/cart',
+                element:<Cart></Cart>
+            }
+        ]
+    }
 ]);
