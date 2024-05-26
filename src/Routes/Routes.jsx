@@ -1,3 +1,5 @@
+import React from 'react'
+
 import {createBrowserRouter,} from "react-router-dom";
 import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home/Home.jsx";
@@ -39,7 +41,7 @@ export const router = createBrowserRouter([
     },
     {
         path:"/dashboard",
-        element:<Dashboard></Dashboard>,
+        element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children:[
             {
                 path:'/dashboard/cart',

@@ -7,17 +7,18 @@ import Swal from 'sweetalert2'
 
 import bg from '../../assets/login/bg.png';
 import authentication from '../../assets/login/authentication2.png';
+import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
 function Login() {
   const capthcaRef = useRef(null);
   const [allowLogin, setAllowLogin] = useState(true);
   const { signIn } = useContext(AuthContext);
-  
+
 
   const navigate = useNavigate();
   const location = useLocation();
   const from1 = location.state?.from?.pathname || '/'
-  
+
 
   useEffect(() => {
     loadCaptchaEnginge(5);
@@ -57,31 +58,31 @@ function Login() {
 
         event.target.reset();
 
-        navigate(from1,{replace:true});
+        navigate(from1, { replace: true });
 
       })
-      .catch(e=>{
+      .catch(e => {
         console.log(e)
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
-                footer: '<a href="#">Why do I have this issue?</a>'
-              });
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: '<a href="#">Why do I have this issue?</a>'
+        });
       })
-      
+
   }
 
   return (
-      <div className="hero min-h-screen bg-base-200" style={{background:`url(${bg})`}}>
+    <div className="hero min-h-screen bg-base-200" style={{ background: `url(${bg})` }}>
       <div className="hero-content flex-col lg:flex-row">
         <div className="text-center md:w-1/2 lg:text-left">
-          <img src={authentication} alt="" />          
+          <img src={authentication} alt="" />
         </div>
         <div className="card md:w-1/2 max-w-sm shadow-2xl bg-base-100">
 
           <form onSubmit={handleLogin} className="card-body pb-0">
-          <h1 className="text-5xl font-bold">Login now!</h1>
+            <h1 className="text-5xl font-bold">Login now!</h1>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -110,9 +111,12 @@ function Login() {
             </div>
           </form>
 
-          <p className='text-yellow-500	 font-medium	text-base text-center pt-2 pb-5'><small>New Here ....? <Link to='/signup'>Create an Account</Link> </small></p>
+          <p className='text-yellow-500	 font-medium	text-base text-center pt-2 pb-1'><small>New Here ....? <Link to='/signup'>Create an Account</Link> </small></p>
 
+          <div className="divider p-0 m-1">OR Login With </div>
 
+          <SocialLogin></SocialLogin>
+ 
         </div>
       </div>
     </div>

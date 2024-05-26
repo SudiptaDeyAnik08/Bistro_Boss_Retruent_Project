@@ -6,10 +6,15 @@ import { AuthContext } from '../../provider/AuthProvider/AuthProvider';
 import { useForm } from "react-hook-form"
 
 import Swal from 'sweetalert2'
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
 
 
 function SignUp() {
+
+    const axioxPublic = useAxiosPublic()
+
     const navigate = useNavigate();
     const location = useLocation();
     const form2 = location.state?.from?.pathname || '/login'
@@ -44,28 +49,42 @@ function SignUp() {
                 updateUser(name, photoURL)
                     .then(() => {
                         // This sweet is for Successfully creating a user
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: "User Has Created",
-                            showConfirmButton: true,
-                            timer: 5000
-                        });
-                        
+
+                        const ueserInfo = {
+                            name: name,
+                            email: email
+                        }
+
+                        axioxPublic.post('/users', ueserInfo)
+                            .then(res => {
+                                console.log("Data response", res.data)
+                                if (res.data.insertedId) {
+                                    Swal.fire({
+                                        position: "top-end",
+                                        icon: "success",
+                                        title: "User Has Created",
+                                        showConfirmButton: true,
+                                        timer: 5000
+                                    });
+                                    event.target.reset();
+                                    navigate(form2, { replace: true });
+                                }
+                            })
+
+
                     })
 
-                    navigate(form2,{replace:true})
-                })
-                .catch(e => {
+            })
+            .catch(e => {
 
-                    console.log(e)
-                    // this sweet2 alert is for not updating the user
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Something went wrong!",
-                        footer: '<a href="#">Why do I have this issue?</a>'
-                    });
+                console.log(e)
+                // this sweet2 alert is for not updating the user
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                    footer: '<a href="#">Why do I have this issue?</a>'
+                });
             })
             .catch(e => {
                 console.log(e)
@@ -77,7 +96,7 @@ function SignUp() {
                 });
             })
 
-        event.target.reset();
+
     }
     return (
 
@@ -124,6 +143,9 @@ function SignUp() {
 
                     <p className='text-yellow-500	 font-medium	text-base text-center pt-2 pb-5'><small>Already registered? <Link to='/login'>Go to log in</Link> </small></p>
 
+                    <div className="divider p-0 m-1">OR Login With </div>
+
+                    <SocialLogin></SocialLogin>
 
                 </div>
             </div>
